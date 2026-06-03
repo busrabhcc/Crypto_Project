@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriptografik Algoritma Analiz ve Görselleştirme Platformu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .active-tab-emerald { background-color: #059669 !important; color: white !important; border-color: #10b981 !important; }
+        .active-tab-teal { background-color: #0d9488 !important; color: white !important; border-color: #14b8a6 !important; }
+        .active-tab-blue { background-color: #2563eb !important; color: white !important; border-color: #3b82f6 !important; }
+        .active-tab-amber { background-color: #d97706 !important; color: white !important; border-color: #f59e0b !important; }
+        .active-tab-rose { background-color: #e11d48 !important; color: white !important; border-color: #f43f5e !important; }
+        .active-tab-violet { background-color: #7c3aed !important; color: white !important; border-color: #8b5cf6 !important; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #090d16; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #374151; }
+    </style>
+</head>
+
+<body class="bg-gray-950 text-gray-100 font-sans min-h-screen">
+
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+
+    <h1 class="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-blue-400 to-violet-400 mb-2">
+        Etkileşimli Kriptografik Algoritma Analiz Platformu
+    </h1>
+
+    <p class="text-center text-gray-400 text-sm mb-8">
+        Kriptografi ve Uygulamaları Dersi Final Projesi
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10 bg-gray-900/50 p-3 rounded-2xl border border-gray-800 shadow-lg">
+        <button onclick="switchTab('aes-panel', 'emerald')" id="btn-aes-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-emerald-400 border border-emerald-500/30 font-bold py-2 px-3 rounded-xl transition-all active-tab-emerald">🔑 AES</button>
+        <button onclick="switchTab('galois-panel', 'teal')" id="btn-galois-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-teal-400 border border-teal-500/30 font-bold py-2 px-3 rounded-xl transition-all">🧮 GF(2⁸)</button>
+        <button onclick="switchTab('des-panel', 'blue')" id="btn-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-blue-400 border border-blue-500/30 font-bold py-2 px-3 rounded-xl transition-all">🔓 DES</button>
+        <button onclick="switchTab('triple-des-panel', 'amber')" id="btn-triple-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-amber-400 border border-amber-500/30 font-bold py-2 px-3 rounded-xl transition-all">🔒 3-DES</button>
+        <button onclick="switchTab('hash-panel', 'rose')" id="btn-hash-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-rose-400 border border-rose-500/30 font-bold py-2 px-3 rounded-xl transition-all"># Hash & MAC</button>
+        <button onclick="switchTab('rbg-panel', 'violet')" id="btn-rbg-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-violet-400 border border-violet-500/30 font-bold py-2 px-3 rounded-xl transition-all">🎲 RBG</button>
+    </div>
+
+    <div>
+        <!-- AES PANEL -->
+        <div id="aes-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4">
+            <h2 class="text-2xl font-bold text-emerald-400">🔑 AES Şifreleme Modülü</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="message" placeholder="Düz Metin (Plaintext)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
+                <input type="text" id="key" placeholder="Anahtar (Key - 16 Karakter)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
+            </div>
+
+            <button onclick="encryptAES()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg transition-all shadow-lg">
+                AES Şifrele ve Çözümle
+            </button>
+
+            <div id="aesResultArea" class="hidden mt-4">
+                <div id="cipherOutput" class="bg-emerald-950/40 border border-emerald-800 p-3 rounded-lg font-mono text-center text-lg font-bold text-emerald-300 mb-4"></div>
+                <div id="aesStepsOutput" class="bg-gray-950 p-3 rounded-lg border border-gray-800"></div>
+            </div>
+        </div>
+
+        <!-- GALOIS PANEL -->
+        <div id="galois-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
+            <h2 class="text-2xl font-bold text-teal-400">🧮 GF(2⁸) MixColumns Sandbox</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
+                <input type="text" id="v1" placeholder="V1" maxlength="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-center text-lg outline-none uppercase focus:border-teal-500">
+                <input type="text" id="v2" placeholder="V2" maxlength="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-center text-lg outline-none uppercase focus:border-teal-500">
+                <input type="text" id="v3" placeholder="V3" maxlength="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-center text-lg outline-none uppercase focus:border-teal-500">
+                <input type="text" id="v4" placeholder="V4" maxlength="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-center text-lg outline-none uppercase focus:border-teal-500">
+            </div>
+
+            <button onclick="calculateGalois()" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 rounded-lg transition-all shadow-lg">
+                Galois Hücresi Hesapla
+            </button>
+
+            <div id="galoisResultArea" class="hidden mt-4">
+                <div id="mixOutput" class="bg-teal-950/40 border border-teal-800 p-4 rounded-lg font-mono text-center text-xl font-bold text-teal-300 mb-4"></div>
+                <div id="mixStepsOutput" class="bg-gray-950 p-4 rounded-lg border border-gray-800"></div>
+            </div>
+        </div>
+
+        <!-- DES PANEL -->
+        <div id="des-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
+            <h2 class="text-2xl font-bold text-blue-400">🔓 Standart DES Modülü</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="justDesMessage" placeholder="Plaintext (8 Karakter)" maxlength="8" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
+                <input type="text" id="justDesKey" placeholder="Key (8 Karakter)" maxlength="8" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
+            </div>
+
+            <button onclick="encryptJustDES()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition-all shadow-lg">
+                16 Turlu DES Döngüsünü Başlat
+            </button>
+
+            <div id="justDesResultArea" class="hidden mt-4">
+                <div id="justDesCipherOutput" class="bg-blue-950/40 border border-blue-800 p-3 rounded-lg font-mono text-center text-lg font-bold text-blue-300 mb-4"></div>
+                <div id="justDesStepsOutput" class="bg-gray-950 p-3 rounded-lg border border-gray-800"></div>
+            </div>
+        </div>
+                  
+                <!-- 3-DES PANEL -->
+        <div id="triple-des-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
+            <h2 class="text-2xl font-bold text-amber-400">🔒 Triple DES (3-DES) Modülü</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-2 font-mono">
+                <input type="text" id="desMessage" placeholder="Plaintext" maxlength="8" class="bg-gray-800 border border-gray-700 rounded-lg p-3 text-white font-sans md:col-span-4 outline-none">
+                <input type="text" id="k1" placeholder="K1" maxlength="8" class="bg-gray-800 border border-gray-700 rounded-lg p-3 outline-none">
+                <input type="text" id="k2" placeholder="K2" maxlength="8" class="bg-gray-800 border border-gray-700 rounded-lg p-3 outline-none">
+                <input type="text" id="k3" placeholder="K3" maxlength="8" class="bg-gray-800 border border-gray-700 rounded-lg p-3 outline-none">
+            </div>
+
+            <button onclick="encryptDES()" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 rounded-lg transition-all shadow-lg">
+                3-DES EDE Döngüsünü Çalıştır
+            </button>
+
+            <div id="desResultArea" class="hidden mt-4">
+                <div id="desCipherOutput" class="bg-amber-950/40 border border-amber-800 p-3 rounded-lg font-mono text-center text-lg font-bold text-amber-300 mb-4"></div>
+                <div id="desStepsOutput" class="bg-gray-950 p-3 rounded-lg border border-gray-800"></div>
+            </div>
+        </div>
+
+        <!-- HASH PANEL -->
+        <div id="hash-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-6 hidden">
+            <div>
+                <h2 class="text-2xl font-bold text-rose-400 flex items-center gap-2"># SHA-256 Hash ve HMAC Analiz Modülü</h2>
+                <p class="text-xs text-gray-400 mt-1">Veri bütünlüğü ve kimlik doğrulama kavramlarının uygulamalı analizi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-950/50 p-4 rounded-xl border border-gray-800 space-y-3">
+                    <h3 class="text-sm font-bold text-rose-300 uppercase">1. Veri Bütünlüğü (SHA-256)</h3>
+                    <input type="text" id="hashInput" placeholder="Bütünlük testi için bir metin yazın" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2.5 text-sm outline-none">
+                    <button onclick="analyzeHash()" class="w-full bg-rose-700 hover:bg-rose-600 text-white text-sm font-bold py-2 rounded-lg transition-all shadow-md">
+                        SHA-256 Analizi Yap
+                    </button>
+                </div>
+
+                <div class="bg-gray-950/50 p-4 rounded-xl border border-gray-800 space-y-3">
+                    <h3 class="text-sm font-bold text-rose-300 uppercase">2. Kimlik Doğrulama (HMAC)</h3>
+                    <input type="text" id="hmacInput" placeholder="Doğrulanacak mesaj" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm outline-none">
+                    <input type="text" id="hmacKey" placeholder="Paylaşılan Gizli Anahtar" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-sm outline-none">
+                    <button onclick="analyzeHMAC()" class="w-full bg-rose-700 hover:bg-rose-600 text-white text-sm font-bold py-2 rounded-lg transition-all shadow-md">
+                        HMAC Kodu Üret
+                    </button>
+                </div>
+            </div>
+
+            <div id="hashResultArea" class="hidden mt-4 bg-gray-950 p-4 rounded-xl border border-gray-800">
+                <h3 class="text-sm font-bold text-gray-300 mb-1">Nihai Çıktı Değeri (Hex):</h3>
+                <div id="hashOutput" class="bg-rose-950/20 border border-rose-900 p-2.5 rounded-lg font-mono text-xs break-all text-center font-bold text-rose-300 mb-4"></div>
+
+                <h3 class="text-sm font-bold text-gray-300 mb-2">Analiz Basamakları:</h3>
+                <div id="hashStepsOutput"></div>
+            </div>
+        </div>
+
+        <!-- RBG PANEL -->
+        <div id="rbg-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-6 hidden">
+            <div>
+                <h2 class="text-2xl font-bold text-violet-400">🎲 Kriptografik Rastgele Bit Üretimi (RBG)</h2>
+                <p class="text-xs text-gray-400 mt-1">Güvenli anahtar ve nonce üretimi için CSPRNG simülasyonu.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 items-center max-w-xl">
+                <select id="bitLength" class="bg-gray-800 border border-gray-700 rounded-lg p-3 text-sm focus:border-violet-500 outline-none flex-1 w-full">
+                    <option value="64">64-bit Güvenlik Derecesi</option>
+                    <option value="128" selected>128-bit (Standart Güvenlik)</option>
+                    <option value="256">256-bit (Yüksek Güvenlik - AES-256 Uyumlu)</option>
+                </select>
+
+                <button onclick="generateRbg()" class="bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg flex-1 w-full">
+                    Güvenli Bit Üret
+                </button>
+            </div>
+
+            <div id="rbgResultArea" class="hidden space-y-3 bg-gray-950 p-4 rounded-xl border border-gray-800">
+                <div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">HEX Çıktısı:</span>
+                    <div id="rbgHexOutput" class="bg-gray-900 p-2 rounded border border-gray-800 font-mono text-xs text-violet-300 font-bold break-all mt-1"></div>
+                </div>
+
+                <div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Saf Bit Dizisi:</span>
+                    <div id="rbgBitOutput" class="bg-gray-900 p-2 rounded border border-gray-800 font-mono text-[10px] text-gray-400 break-all max-h-24 overflow-y-auto custom-scrollbar mt-1"></div>
+                </div>
+
+                <div id="rbgStepsOutput"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function switchTab(panelId, theme) {
+    document.querySelectorAll('.crypto-panel').forEach(panel => panel.classList.add('hidden'));
+
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.className = "tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 font-bold py-2 px-3 rounded-xl transition-all";
+    });
+
+    document.getElementById(panelId).classList.remove('hidden');
+
+    const btn = document.getElementById('btn-' + panelId);
+    if (theme === 'emerald') btn.className += " text-emerald-400 border border-emerald-500 active-tab-emerald";
+    if (theme === 'teal') btn.className += " text-teal-400 border border-teal-500 active-tab-teal";
+    if (theme === 'blue') btn.className += " text-blue-400 border border-blue-500 active-tab-blue";
+    if (theme === 'amber') btn.className += " text-amber-400 border border-amber-500 active-tab-amber";
+    if (theme === 'rose') btn.className += " text-rose-400 border border-rose-500 active-tab-rose";
+    if (theme === 'violet') btn.className += " text-violet-400 border border-violet-500 active-tab-violet";
+}
+
+async function apiPost(url, body) {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    });
+
+    return await response.json();
+}
+
+function normalizeSteps(steps) {
+    if (!Array.isArray(steps) || steps.length === 0) {
+        return ["Gösterilecek adım bulunamadı."];
+    }
+    return steps.map(step => String(step));
+}
+
+function getStepValue(step) {
+    if (!step) return "-";
+    const parts = String(step).split(": ");
+    return parts.length > 1 ? parts.slice(1).join(": ") : String(step);
+}
+
+function createAesRoundCards(containerId, steps) {
+    const stepsArray = normalizeSteps(steps);
+
+    let html = `
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold text-emerald-400 mb-3">AES Round Sonuçları</h3>
+    `;
+
+    for (let i = 1; i <= 10; i++) {
+        const subBytes = stepsArray.find(s => s.includes(`Round ${i} - SubBytes`));
+        const shiftRows = stepsArray.find(s => s.includes(`Round ${i} - ShiftRows`));
+        const mixColumns = stepsArray.find(s => s.includes(`Round ${i} - MixColumns`));
+        const addRoundKey = stepsArray.find(s => s.includes(`Round ${i} - AddRoundKey`));
+
+        html += `
+            <div class="bg-gray-900 border border-emerald-800 rounded-xl p-4">
+                <h4 class="text-emerald-400 font-bold text-lg mb-3">Round ${i}</h4>
+
+                <div class="space-y-2 font-mono text-xs">
+                    <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
+                        <span class="text-emerald-300 font-bold">SubBytes: </span>
+                        <span class="text-gray-100 break-all">${getStepValue(subBytes)}</span>
+                    </div>
+
+                    <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
+                        <span class="text-emerald-300 font-bold">ShiftRows: </span>
+                        <span class="text-gray-100 break-all">${getStepValue(shiftRows)}</span>
+                    </div>
+
+                    <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
+                        <span class="text-emerald-300 font-bold">MixColumns: </span>
+                        <span class="text-gray-100 break-all">${getStepValue(mixColumns)}</span>
+                    </div>
+
+                    <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
+                        <span class="text-emerald-300 font-bold">AddRoundKey: </span>
+                        <span class="text-gray-100 break-all">${getStepValue(addRoundKey)}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    html += `</div>`;
+    document.getElementById(containerId).innerHTML = html;
+}
+
+function createProcessCards(containerId, steps, title, color) {
+    const stepsArray = normalizeSteps(steps);
+
+    const colors = {
+        teal: { title: "text-teal-400", border: "border-teal-800", badge: "bg-teal-700" },
+        blue: { title: "text-blue-400", border: "border-blue-800", badge: "bg-blue-700" },
+        amber: { title: "text-amber-400", border: "border-amber-800", badge: "bg-amber-700" },
+        rose: { title: "text-rose-400", border: "border-rose-800", badge: "bg-rose-700" },
+        violet: { title: "text-violet-400", border: "border-violet-800", badge: "bg-violet-700" }
+    };
+
+    const c = colors[color];
+
+    let html = `
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold ${c.title} mb-3">${title}</h3>
+    `;
+
+    stepsArray.forEach((step, index) => {
+        html += `
+            <div class="bg-gray-900 border ${c.border} rounded-xl p-4">
+                <div class="flex items-center gap-4">
+                    <div class="${c.badge} text-white font-bold rounded-full w-9 h-9 flex items-center justify-center shrink-0">
+                        ${index + 1}
+                    </div>
+
+                    <div class="font-mono text-sm text-gray-100 break-all">
+                        ${step}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+    document.getElementById(containerId).innerHTML = html;
+}
+
+async function encryptAES() {
+    const d = await apiPost('/api/encrypt', {
+        message: document.getElementById('message').value,
+        key: document.getElementById('key').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('aesResultArea').classList.remove('hidden');
+    document.getElementById('cipherOutput').innerText = "Nihai AES-128 Ciphertext: " + d.cipherText;
+
+    createAesRoundCards('aesStepsOutput', d.steps);
+}
+
+async function calculateGalois() {
+    const d = await apiPost('/api/galois_sandbox', {
+        v1: document.getElementById('v1').value,
+        v2: document.getElementById('v2').value,
+        v3: document.getElementById('v3').value,
+        v4: document.getElementById('v4').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('galoisResultArea').classList.remove('hidden');
+    document.getElementById('mixOutput').innerText = "MixColumns Sonucu: " + d.mixResult;
+
+    createProcessCards('mixStepsOutput', d.mixSteps, 'Galois Alanı İşlem Adımları', 'teal');
+}
+
+async function encryptJustDES() {
+    const d = await apiPost('/api/encrypt_just_des', {
+        message: document.getElementById('justDesMessage').value,
+        k1: document.getElementById('justDesKey').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('justDesResultArea').classList.remove('hidden');
+    document.getElementById('justDesCipherOutput').innerText = "DES Ciphertext: " + d.cipherText;
+
+    createProcessCards('justDesStepsOutput', d.steps, 'DES Tur Sonuçları', 'blue');
+}
+
+async function encryptDES() {
+    const d = await apiPost('/api/encrypt_des', {
+        message: document.getElementById('desMessage').value,
+        k1: document.getElementById('k1').value,
+        k2: document.getElementById('k2').value,
+        k3: document.getElementById('k3').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('desResultArea').classList.remove('hidden');
+    document.getElementById('desCipherOutput').innerText = "3-DES Ciphertext: " + d.cipherText;
+
+    createProcessCards('desStepsOutput', d.steps, '3-DES EDE İşlem Adımları', 'amber');
+}
+
+async function analyzeHash() {
+    const d = await apiPost('/api/hash_analysis', {
+        message: document.getElementById('hashInput').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('hashResultArea').classList.remove('hidden');
+    document.getElementById('hashOutput').innerText = d.result;
+
+    createProcessCards(
+        'hashStepsOutput',
+        d.steps,
+        'SHA-256 Çığ Etkisi ve Veri Bütünlüğü Analizi',
+        'rose'
+    );
+}
+
+async function analyzeHMAC() {
+    const d = await apiPost('/api/hmac_analysis', {
+        message: document.getElementById('hmacInput').value,
+        key: document.getElementById('hmacKey').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('hashResultArea').classList.remove('hidden');
+    document.getElementById('hashOutput').innerText = d.result;
+
+    createProcessCards(
+        'hashStepsOutput',
+        d.steps,
+        'HMAC Doğrulama Adımları',
+        'rose'
+    );
+}
+
+async function generateRbg() {
+    const d = await apiPost('/api/rbg_simulation', {
+        bitLength: document.getElementById('bitLength').value
+    });
+
+    if (d.error) return alert(d.error);
+
+    document.getElementById('rbgResultArea').classList.remove('hidden');
+    document.getElementById('rbgHexOutput').innerText = d.hexResult;
+    document.getElementById('rbgBitOutput').innerText = d.bitResult;
+
+    createProcessCards('rbgStepsOutput', d.steps, 'RBG Analiz Adımları', 'violet');
+}
+</script>
