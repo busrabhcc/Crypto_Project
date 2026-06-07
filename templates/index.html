@@ -33,18 +33,18 @@
     </p>
 
     <div class="flex flex-wrap justify-center gap-2 mb-10 bg-gray-900/50 p-3 rounded-2xl border border-gray-800 shadow-lg">
-        <button onclick="switchTab('aes-panel', 'emerald')" id="btn-aes-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-emerald-400 border border-emerald-500/30 font-bold py-2 px-3 rounded-xl transition-all active-tab-emerald">🔑 AES</button>
-        <button onclick="switchTab('galois-panel', 'teal')" id="btn-galois-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-teal-400 border border-teal-500/30 font-bold py-2 px-3 rounded-xl transition-all">🧮 GF(2⁸)</button>
-        <button onclick="switchTab('des-panel', 'blue')" id="btn-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-blue-400 border border-blue-500/30 font-bold py-2 px-3 rounded-xl transition-all">🔓 DES</button>
-        <button onclick="switchTab('triple-des-panel', 'amber')" id="btn-triple-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-amber-400 border border-amber-500/30 font-bold py-2 px-3 rounded-xl transition-all">🔒 3-DES</button>
-        <button onclick="switchTab('hash-panel', 'rose')" id="btn-hash-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-rose-400 border border-rose-500/30 font-bold py-2 px-3 rounded-xl transition-all"># Hash & MAC</button>
-        <button onclick="switchTab('rbg-panel', 'violet')" id="btn-rbg-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-violet-400 border border-violet-500/30 font-bold py-2 px-3 rounded-xl transition-all">🎲 RBG</button>
+        <button onclick="switchTab('aes-panel', 'emerald')" id="btn-aes-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-emerald-400 border border-emerald-500/30 font-bold py-2 px-3 rounded-xl transition-all active-tab-emerald"> AES</button>
+        <button onclick="switchTab('galois-panel', 'teal')" id="btn-galois-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-teal-400 border border-teal-500/30 font-bold py-2 px-3 rounded-xl transition-all"> GF(2⁸)</button>
+        <button onclick="switchTab('des-panel', 'blue')" id="btn-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-blue-400 border border-blue-500/30 font-bold py-2 px-3 rounded-xl transition-all"> DES</button>
+        <button onclick="switchTab('triple-des-panel', 'amber')" id="btn-triple-des-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-amber-400 border border-amber-500/30 font-bold py-2 px-3 rounded-xl transition-all"> 3-DES</button>
+        <button onclick="switchTab('hash-panel', 'rose')" id="btn-hash-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-rose-400 border border-rose-500/30 font-bold py-2 px-3 rounded-xl transition-all"> Hash &  MAC</button>
+        <button onclick="switchTab('rbg-panel', 'violet')" id="btn-rbg-panel" class="tab-button flex-1 min-w-[120px] bg-gray-800 hover:bg-gray-700 text-violet-400 border border-violet-500/30 font-bold py-2 px-3 rounded-xl transition-all"> RBG</button>
     </div>
 
     <div>
-        <!-- AES PANEL -->
+        <!-- AES PANELİ -->
         <div id="aes-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4">
-            <h2 class="text-2xl font-bold text-emerald-400">🔑 AES Şifreleme Modülü</h2>
+            <h2 class="text-2xl font-bold text-emerald-400"> AES Şifreleme Modülü</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" id="message" placeholder="Düz Metin (Plaintext)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
@@ -61,9 +61,9 @@
             </div>
         </div>
 
-        <!-- GALOIS PANEL -->
+        <!-- GALOIS PANELİ -->
         <div id="galois-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
-            <h2 class="text-2xl font-bold text-teal-400">🧮 GF(2⁸) MixColumns Sandbox</h2>
+            <h2 class="text-2xl font-bold text-teal-400"> GF(2⁸) MixColumns Sandbox</h2>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
                 <input type="text" id="v1" placeholder="V1" maxlength="2" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-center text-lg outline-none uppercase focus:border-teal-500">
@@ -82,9 +82,9 @@
             </div>
         </div>
 
-        <!-- DES PANEL -->
+        <!-- DES PANELİ -->
         <div id="des-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
-            <h2 class="text-2xl font-bold text-blue-400">🔓 Standart DES Modülü</h2>
+            <h2 class="text-2xl font-bold text-blue-400"> Standart DES Modülü</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" id="justDesMessage" placeholder="Plaintext (8 Karakter)" maxlength="8" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white outline-none">
@@ -101,9 +101,9 @@
             </div>
         </div>
                   
-                <!-- 3-DES PANEL -->
+        <!-- 3-DES PANELİ -->
         <div id="triple-des-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-4 hidden">
-            <h2 class="text-2xl font-bold text-amber-400">🔒 Triple DES (3-DES) Modülü</h2>
+            <h2 class="text-2xl font-bold text-amber-400"> Triple DES (3-DES) Modülü</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-2 font-mono">
                 <input type="text" id="desMessage" placeholder="Plaintext" maxlength="8" class="bg-gray-800 border border-gray-700 rounded-lg p-3 text-white font-sans md:col-span-4 outline-none">
@@ -122,7 +122,7 @@
             </div>
         </div>
 
-        <!-- HASH PANEL -->
+        <!-- HASH PANELİ -->
         <div id="hash-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-6 hidden">
             <div>
                 <h2 class="text-2xl font-bold text-rose-400 flex items-center gap-2"># SHA-256 Hash ve HMAC Analiz Modülü</h2>
@@ -157,10 +157,10 @@
             </div>
         </div>
 
-        <!-- RBG PANEL -->
+        <!-- RBG PANELİ -->
         <div id="rbg-panel" class="crypto-panel bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-xl space-y-6 hidden">
             <div>
-                <h2 class="text-2xl font-bold text-violet-400">🎲 Kriptografik Rastgele Bit Üretimi (RBG)</h2>
+                <h2 class="text-2xl font-bold text-violet-400"> Kriptografik Rastgele Bit Üretimi (RBG)</h2>
                 <p class="text-xs text-gray-400 mt-1">Güvenli anahtar ve nonce üretimi için CSPRNG simülasyonu.</p>
             </div>
 
@@ -234,6 +234,44 @@ function getStepValue(step) {
     return parts.length > 1 ? parts.slice(1).join(": ") : String(step);
 }
 
+// --- DES, HASH VE RBG İÇİN GEREKLİ OLAN ORTAK KART FONKSİYONU (BU EKSİKTİ) ---
+function createProcessCards(containerId, steps, title, color) {
+    const stepsArray = normalizeSteps(steps);
+
+    const colors = {
+        teal: { title: "text-teal-400", border: "border-teal-800", badge: "bg-teal-700" },
+        blue: { title: "text-blue-400", border: "border-blue-800", badge: "bg-blue-700" },
+        amber: { title: "text-amber-400", border: "border-amber-800", badge: "bg-amber-700" },
+        rose: { title: "text-rose-400", border: "border-rose-800", badge: "bg-rose-700" },
+        violet: { title: "text-violet-400", border: "border-violet-800", badge: "bg-violet-700" }
+    };
+
+    const c = colors[color] || colors.blue;
+
+    let html = `
+        <div class="space-y-4">
+            <h3 class="text-lg font-bold ${c.title} mb-3">${title}</h3>
+    `;
+
+    stepsArray.forEach((step, index) => {
+        html += `
+            <div class="bg-gray-900 border ${c.border} rounded-xl p-4">
+                <div class="flex items-center gap-4">
+                    <div class="${c.badge} text-white font-bold rounded-full w-9 h-9 flex items-center justify-center shrink-0">
+                        ${index + 1}
+                    </div>
+                    <div class="font-mono text-sm text-gray-100 break-all">
+                        ${step}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+    document.getElementById(containerId).innerHTML = html;
+}
+
 function createAesRoundCards(containerId, steps) {
     const stepsArray = normalizeSteps(steps);
 
@@ -251,23 +289,19 @@ function createAesRoundCards(containerId, steps) {
         html += `
             <div class="bg-gray-900 border border-emerald-800 rounded-xl p-4">
                 <h4 class="text-emerald-400 font-bold text-lg mb-3">Round ${i}</h4>
-
                 <div class="space-y-2 font-mono text-xs">
                     <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
                         <span class="text-emerald-300 font-bold">SubBytes: </span>
                         <span class="text-gray-100 break-all">${getStepValue(subBytes)}</span>
                     </div>
-
                     <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
                         <span class="text-emerald-300 font-bold">ShiftRows: </span>
                         <span class="text-gray-100 break-all">${getStepValue(shiftRows)}</span>
                     </div>
-
                     <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
                         <span class="text-emerald-300 font-bold">MixColumns: </span>
                         <span class="text-gray-100 break-all">${getStepValue(mixColumns)}</span>
                     </div>
-
                     <div class="bg-gray-950 border border-gray-800 rounded-lg p-2">
                         <span class="text-emerald-300 font-bold">AddRoundKey: </span>
                         <span class="text-gray-100 break-all">${getStepValue(addRoundKey)}</span>
@@ -281,35 +315,39 @@ function createAesRoundCards(containerId, steps) {
     document.getElementById(containerId).innerHTML = html;
 }
 
-function createProcessCards(containerId, steps, title, color) {
-    const stepsArray = normalizeSteps(steps);
-
-    const colors = {
-        teal: { title: "text-teal-400", border: "border-teal-800", badge: "bg-teal-700" },
-        blue: { title: "text-blue-400", border: "border-blue-800", badge: "bg-blue-700" },
-        amber: { title: "text-amber-400", border: "border-amber-800", badge: "bg-amber-700" },
-        rose: { title: "text-rose-400", border: "border-rose-800", badge: "bg-rose-700" },
-        violet: { title: "text-violet-400", border: "border-violet-800", badge: "bg-violet-700" }
-    };
-
-    const c = colors[color];
+function createGaloisProcessCards(containerId, steps, title) {
+    if (!Array.isArray(steps) || steps.length === 0) {
+        document.getElementById(containerId).innerHTML = ["Gösterilecek adım bulunamadı."];
+        return;
+    }
 
     let html = `
         <div class="space-y-4">
-            <h3 class="text-lg font-bold ${c.title} mb-3">${title}</h3>
+            <h3 class="text-lg font-bold text-teal-400 mb-3">${title}</h3>
     `;
 
-    stepsArray.forEach((step, index) => {
+    steps.forEach((step, index) => {
+        const stepId = `galois-step-${index}`;
         html += `
-            <div class="bg-gray-900 border ${c.border} rounded-xl p-4">
-                <div class="flex items-center gap-4">
-                    <div class="${c.badge} text-white font-bold rounded-full w-9 h-9 flex items-center justify-center shrink-0">
-                        ${index + 1}
+            <div class="bg-gray-900 border border-teal-800/60 rounded-xl overflow-hidden shadow-md transition-all duration-200">
+                <div onclick="toggleGaloisStep('${stepId}')" class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-800/40 select-none transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-700 text-white font-bold rounded-full w-9 h-9 flex items-center justify-center shrink-0 shadow-sm">
+                            ${index + 1}
+                        </div>
+                        <div class="font-mono text-base font-semibold text-gray-100 tracking-wide">
+                            ${step.title}
+                        </div>
                     </div>
-
-                    <div class="font-mono text-sm text-gray-100 break-all">
-                        ${step}
-                    </div>
+                    <span id="icon-${stepId}" class="text-teal-400 text-xs font-bold font-sans tracking-wider transition-transform duration-200">
+                        ▼ DETAYLARI GÖR
+                    </span>
+                </div>
+                <div id="${stepId}" class="hidden bg-gray-950/70 border-t border-gray-800 px-4 pb-4 pt-3 ml-0 md:ml-13 transition-all">
+                    <p class="text-xs text-gray-400 font-sans leading-relaxed mb-3">
+                        <strong class="text-teal-300">Mantık:</strong> ${step.logic}
+                    </p>
+                    <div class="bg-gray-950 p-3 rounded-lg border border-gray-800/80 font-mono text-xs text-gray-300 leading-normal whitespace-pre-wrap tracking-normal shadow-inner">${step.binary_flow}</div>
                 </div>
             </div>
         `;
@@ -317,6 +355,19 @@ function createProcessCards(containerId, steps, title, color) {
 
     html += `</div>`;
     document.getElementById(containerId).innerHTML = html;
+}
+
+function toggleGaloisStep(id) {
+    const panel = document.getElementById(id);
+    const icon = document.getElementById('icon-' + id);
+    
+    if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        icon.innerText = "▲ DETAYLARI GIZLE";
+    } else {
+        panel.classList.add('hidden');
+        icon.innerText = "▼ DETAYLARI GÖR";
+    }
 }
 
 async function encryptAES() {
@@ -346,7 +397,7 @@ async function calculateGalois() {
     document.getElementById('galoisResultArea').classList.remove('hidden');
     document.getElementById('mixOutput').innerText = "MixColumns Sonucu: " + d.mixResult;
 
-    createProcessCards('mixStepsOutput', d.mixSteps, 'Galois Alanı İşlem Adımları', 'teal');
+    createGaloisProcessCards('mixStepsOutput', d.mixSteps, 'Galois Alanı İşlem Adımları');
 }
 
 async function encryptJustDES() {
@@ -389,12 +440,7 @@ async function analyzeHash() {
     document.getElementById('hashResultArea').classList.remove('hidden');
     document.getElementById('hashOutput').innerText = d.result;
 
-    createProcessCards(
-        'hashStepsOutput',
-        d.steps,
-        'SHA-256 Çığ Etkisi ve Veri Bütünlüğü Analizi',
-        'rose'
-    );
+    createProcessCards('hashStepsOutput', d.steps, 'SHA-256 Çığ Etkisi ve Veri Bütünlüğü Analizi', 'rose');
 }
 
 async function analyzeHMAC() {
@@ -408,12 +454,7 @@ async function analyzeHMAC() {
     document.getElementById('hashResultArea').classList.remove('hidden');
     document.getElementById('hashOutput').innerText = d.result;
 
-    createProcessCards(
-        'hashStepsOutput',
-        d.steps,
-        'HMAC Doğrulama Adımları',
-        'rose'
-    );
+    createProcessCards('hashStepsOutput', d.steps, 'HMAC Doğrulama Adımları', 'rose');
 }
 
 async function generateRbg() {

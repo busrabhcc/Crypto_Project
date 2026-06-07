@@ -1,5 +1,3 @@
-# DES Standart Permütasyon ve S-Box Tabloları (Kısaltılmış Örnek Altyapı)
-# Tam DES simülasyonu için blok yapılarını bit düzeyinde işleyen lojik:
 
 def bit_xor(bits1, bits2):
     return "".join(str(int(b1) ^ int(b2)) for b1, b2 in zip(bits1, bits2))
@@ -19,8 +17,6 @@ def des_round_function(right_32, subkey_48):
     32-bitlik sağ parça 48 bite genişletilir, anahtarla XOR'lanır, 
     S-Box'lardan geçip tekrar 32 bit olur. (Simüle edilmiş deterministik yapı)
     """
-    # Basitleştirilmiş eğitim amaçlı deterministik iç karıştırma (S-Box mantığı)
-    # Gerçek bit kaydırma ve XOR lojiği
     mixed = ""
     for i in range(32):
         mixed += str(int(right_32[i]) ^ int(subkey_48[i % 48]))
@@ -58,7 +54,7 @@ def run_single_des(block_64, key_64, mode="ENCRYPT"):
     final_bits = R + L
     return final_bits, round_logs
 
-# --- 3-DES (TRIPLE DES) MOTORU ---
+# 3-DES
 def run_3des_simulation(plaintext, key1, key2, key3):
     """ 3-DES Şifrele-Çöz-Şifrele (EDE) Mekanizması """
     # Girdileri 64-bitlik bit bloklarına çeviriyoruz

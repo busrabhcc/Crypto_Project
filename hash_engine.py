@@ -9,9 +9,7 @@ def run_sha256_simulation(text):
         
     # Gerçek SHA-256 Hash Hesabı
     sha256_hash = hashlib.sha256(text.encode('utf-8')).hexdigest().upper()
-    
-    # Eğitimsel Analiz: Çığ Etkisi Gösterimi
-    # Girişteki tek bir karakteri değiştirerek hash'in nasıl tamamen değiştiğini simüle ediyoruz
+
     alt_text = text[:-1] + ("X" if text[-1] != "X" else "Y") if text else "X"
     alt_hash = hashlib.sha256(alt_text.encode('utf-8')).hexdigest().upper()
     
